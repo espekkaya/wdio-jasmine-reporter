@@ -1,0 +1,37 @@
+{
+  "name": "@espekkaya/wdio-jasmine-reporter",
+  "version": "1.0.0",
+  "description": "webdriverio plugin of jasmine report",
+  "main": "./build/index",
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "keywords": [
+    "jasmine",
+    "reporter",
+    "wdio-plugin",
+    "webdriverio",
+    "wdio-reporter"
+  ],
+  "author": "S. Enes Pekkaya <espekkaya@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/espekkaya/wdio-jasmine-reporter.git"
+  },
+  "homepage": "https://github.com/espekkaya/wdio-jasmine-reporter#readme",
+  "bugs": {
+    "url": "https://github.com/espekkaya/wdio-jasmine-reporter/issues"
+  },
+  "dependencies": {
+    "@wdio/reporter": "7.20.7"
+  },
+  "devDependencies": {
+    "@tsconfig/node12": "^1.0.11",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  }
+}

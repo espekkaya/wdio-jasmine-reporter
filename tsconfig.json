@@ -1,0 +1,28 @@
+{
+    "extends": "@tsconfig/node12/tsconfig.json",
+
+    "compilerOptions": {
+        "allowJs": true,
+        "declaration": true,
+        "declarationMap": true,
+        "resolveJsonModule": true,
+        "removeComments": false,
+        "strictFunctionTypes": false,
+        "lib": ["dom"],
+        "inlineSourceMap": false,
+        "baseUrl": ".",
+        "outDir": "./build",
+        "rootDir": "./src",
+        "types": [
+            "node"
+        ]
+    },
+
+    "include": [
+        "src/**/*"
+    ],
+  
+    "exclude": [
+        "node_modules"
+    ]
+}
