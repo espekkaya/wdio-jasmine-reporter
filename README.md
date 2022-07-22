@@ -1,8 +1,6 @@
-# WDIO Cucumber Reporter Plugin
+# WDIO Jasmine Reporter Plugin
 
 This wdio plugin was created based on [this][0].
-
-A WebdriverIO plugin to report in cucumber style.
 
 It was tested on Webdriverio v6 and v7.
 
@@ -11,7 +9,7 @@ It was tested on Webdriverio v6 and v7.
 Firstly install in your devdependency
 
 ```bash
-npm install @espekkaya/wdio-cucumber-reporter --save-dev
+npm install @espekkaya/wdio-jasmine-reporter --save-dev
 ```
 
 ## Configuration
@@ -19,12 +17,12 @@ npm install @espekkaya/wdio-cucumber-reporter --save-dev
 Your wdio.conf.js file should look like this:
 
 ```js
-import CucumberReporter from '@espekkaya/wdio-cucumber-reporter';
+import JasmineReporter from '@espekkaya/wdio-jasmine-reporter';
 
 exports.config = {
     // ...
     reporters: [
-        CucumberReporter
+        JasmineReporter
     ],
     // ...
 };
