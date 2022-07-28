@@ -38,7 +38,7 @@ exports.config = {
     reporters: [
         [JasmineReporter, {
             aggregateResultPah: './', // save json file path
-            isResetResult: false | true, // do not reset values from json file (default: true)
+            isResetResult: false | true, // reset values from json file (default: true)
         }],
     ],
     // ...
