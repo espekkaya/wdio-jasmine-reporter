@@ -28,6 +28,29 @@ exports.config = {
 };
 ```
 
+if you want to get aggregate result and save result into a json file;
+
+```js
+import JasmineReporter from '@espekkaya/wdio-jasmine-reporter';
+
+exports.config = {
+    // ...
+    reporters: [
+        [JasmineReporter, {
+            aggregateResultPah: './', // save json file path
+            isResetResult: false | true, // do not reset values from json file (default: true)
+        }],
+    ],
+    // ...
+};
+```
+
+Example of json file;
+
+```json
+{"TestStatus":{"PASSED":0,"FAILED":0,"SKIPPED":6}}
+```
+
 ----
 
 For more information on WebdriverIO see the [homepage][1].
