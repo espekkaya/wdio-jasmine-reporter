@@ -1,4 +1,6 @@
 import WDIOReporter from '@wdio/reporter';
+import moment from 'moment';
+
 import TestResultAggregate from './common/TestResultAggreagate';
 
 const esc = {
@@ -9,6 +11,8 @@ const esc = {
 let suiteEndOnce = true;
 
 export default class JasmineReporter extends WDIOReporter {
+    startTime: any;
+    endTime: any;
 
     constructor(options: any) {
         /*
@@ -30,7 +34,13 @@ export default class JasmineReporter extends WDIOReporter {
         await TestResultAggregate.setResult2File(TestResultAggregate.result);
     }
 
+    addLeadingZeros(num: number, totalLength: number = 2) {
+        return String(num).padStart(totalLength, '0');
+      }
+
     onSuiteStart(test: any) {
+        this.startTime = moment();
+
         if (test.type == "feature")
             process.stdout.write(`${esc.sp}${esc.sp}Feature: ${test.title}${esc.nl}`)
         else
@@ -57,7 +67,9 @@ export default class JasmineReporter extends WDIOReporter {
             return;
         
         suiteEndOnce = false;
-        
+
+        this.endTime = moment();
+
         const results = this.counts;
         const total = results.failures + results.passes + results.skipping
 
@@ -67,6 +79,12 @@ export default class JasmineReporter extends WDIOReporter {
         TestResultAggregate.result.TestStatus.SKIPPED += results.skipping;
         await TestResultAggregate.setResult2File(TestResultAggregate.result);
 
-        process.stdout.write(total + ' test case(s) (' + results.passes + ' passed, ' + results.failures + ' failed, ' + results.skipping + ' skipped)' + esc.nl + esc.nl);
+        process.stdout.write(total + ` test case${total > 1 ? 's' : ''} (` + results.passes + ' passed, ' + results.failures + ' failed, ' + results.skipping + ' skipped)' + esc.nl + esc.nl);
+
+        const hours = this.endTime.diff(this.startTime, 'hours');
+        const minutes = this.endTime.diff(this.startTime, 'minutes');
+        const seconds = this.endTime.diff(this.startTime, 'seconds');
+    
+        process.stdout.write(`Total Run Time : ${this.addLeadingZeros(hours)}:${this.addLeadingZeros(minutes)}:${this.addLeadingZeros(seconds)}`);
     }
 }

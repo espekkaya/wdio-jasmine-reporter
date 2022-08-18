@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const reporter_1 = __importDefault(require("@wdio/reporter"));
+const moment_1 = __importDefault(require("moment"));
 const TestResultAggreagate_1 = __importDefault(require("./common/TestResultAggreagate"));
 const esc = {
     sp: '\u0020',
@@ -26,7 +27,11 @@ class JasmineReporter extends reporter_1.default {
     async resetTestResults() {
         await TestResultAggreagate_1.default.setResult2File(TestResultAggreagate_1.default.result);
     }
+    addLeadingZeros(num, totalLength = 2) {
+        return String(num).padStart(totalLength, '0');
+    }
     onSuiteStart(test) {
+        this.startTime = (0, moment_1.default)();
         if (test.type == "feature")
             process.stdout.write(`${esc.sp}${esc.sp}Feature: ${test.title}${esc.nl}`);
         else
@@ -48,6 +53,7 @@ class JasmineReporter extends reporter_1.default {
         if (!suiteEndOnce)
             return;
         suiteEndOnce = false;
+        this.endTime = (0, moment_1.default)();
         const results = this.counts;
         const total = results.failures + results.passes + results.skipping;
         TestResultAggreagate_1.default.result = await TestResultAggreagate_1.default.getResultFromFile();
@@ -55,7 +61,11 @@ class JasmineReporter extends reporter_1.default {
         TestResultAggreagate_1.default.result.TestStatus.FAILED += results.failures;
         TestResultAggreagate_1.default.result.TestStatus.SKIPPED += results.skipping;
         await TestResultAggreagate_1.default.setResult2File(TestResultAggreagate_1.default.result);
-        process.stdout.write(total + ' test case(s) (' + results.passes + ' passed, ' + results.failures + ' failed, ' + results.skipping + ' skipped)' + esc.nl + esc.nl);
+        process.stdout.write(total + ` test case${total > 1 ? 's' : ''} (` + results.passes + ' passed, ' + results.failures + ' failed, ' + results.skipping + ' skipped)' + esc.nl + esc.nl);
+        const hours = this.endTime.diff(this.startTime, 'hours');
+        const minutes = this.endTime.diff(this.startTime, 'minutes');
+        const seconds = this.endTime.diff(this.startTime, 'seconds');
+        process.stdout.write(`Total Run Time : ${this.addLeadingZeros(hours)}:${this.addLeadingZeros(minutes)}:${this.addLeadingZeros(seconds)}`);
     }
 }
 exports.default = JasmineReporter;
