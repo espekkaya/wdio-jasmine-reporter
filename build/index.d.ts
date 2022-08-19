@@ -4,7 +4,6 @@ export default class JasmineReporter extends WDIOReporter {
     endTime: any;
     constructor(options: any);
     resetTestResults(): Promise<void>;
-    addLeadingZeros(num: number, totalLength?: number): string;
     onSuiteStart(test: any): void;
     onTestPass(test: any): void;
     onTestFail(test: any): void;

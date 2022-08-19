@@ -34,10 +34,6 @@ export default class JasmineReporter extends WDIOReporter {
         await TestResultAggregate.setResult2File(TestResultAggregate.result);
     }
 
-    addLeadingZeros(num: number, totalLength: number = 2) {
-        return String(num).padStart(totalLength, '0');
-      }
-
     onSuiteStart(test: any) {
         this.startTime = moment();
 
@@ -81,10 +77,9 @@ export default class JasmineReporter extends WDIOReporter {
 
         process.stdout.write(total + ` test case${total > 1 ? 's' : ''} (` + results.passes + ' passed, ' + results.failures + ' failed, ' + results.skipping + ' skipped)' + esc.nl + esc.nl);
 
-        const hours = this.endTime.diff(this.startTime, 'hours');
-        const minutes = this.endTime.diff(this.startTime, 'minutes');
         const seconds = this.endTime.diff(this.startTime, 'seconds');
-    
-        process.stdout.write(`Total Run Time : ${this.addLeadingZeros(hours)}:${this.addLeadingZeros(minutes)}:${this.addLeadingZeros(seconds)}`);
+        const formatted = moment.utc(seconds * 1000).format('HH:mm:ss');
+
+        process.stdout.write(`Total Run Time : ${formatted}`);
     }
 }
