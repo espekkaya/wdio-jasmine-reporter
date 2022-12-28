@@ -1,7 +1,7 @@
 {
-  "name": "@espekkaya/wdio-jasmine-reporter",
-  "version": "1.0.4",
-  "description": "webdriverio plugin of jasmine report",
+  "name": "@espekkaya/wdio-mocha-reporter",
+  "version": "1.0.1",
+  "description": "webdriverio plugin of mocha report",
   "main": "./build/index",
   "scripts": {
     "build": "npx tsc"
@@ -10,7 +10,7 @@
     "node": ">=12.0.0"
   },
   "keywords": [
-    "jasmine",
+    "mocha",
     "reporter",
     "wdio-plugin",
     "webdriverio",
@@ -20,11 +20,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/espekkaya/wdio-jasmine-reporter.git"
+    "url": "git+https://github.com/espekkaya/wdio-mocha-reporter.git"
   },
-  "homepage": "https://github.com/espekkaya/wdio-jasmine-reporter#readme",
+  "homepage": "https://github.com/espekkaya/wdio-mocha-reporter#readme",
   "bugs": {
-    "url": "https://github.com/espekkaya/wdio-jasmine-reporter/issues"
+    "url": "https://github.com/espekkaya/wdio-mocha-reporter/issues"
   },
   "dependencies": {
     "@types/fs-extra": "^9.0.13",

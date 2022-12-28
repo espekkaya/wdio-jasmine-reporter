@@ -10,7 +10,7 @@ const esc = {
 
 let suiteEndOnce = true;
 
-export default class JasmineReporter extends WDIOReporter {
+export default class MochaReporter extends WDIOReporter {
     startTime: any;
     endTime: any;
 

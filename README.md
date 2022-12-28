@@ -1,4 +1,4 @@
-# WDIO Jasmine Reporter Plugin
+# WDIO Mocha Reporter Plugin
 
 This wdio plugin was created based on [this][0].
 
@@ -9,7 +9,7 @@ It was tested on Webdriverio v6 and v7.
 Firstly install in your devdependency
 
 ```bash
-npm install @espekkaya/wdio-jasmine-reporter --save-dev
+npm install @espekkaya/wdio-mocha-reporter --save-dev
 ```
 
 ## Configuration
@@ -17,12 +17,12 @@ npm install @espekkaya/wdio-jasmine-reporter --save-dev
 Your wdio.conf.js file should look like this:
 
 ```js
-import JasmineReporter from '@espekkaya/wdio-jasmine-reporter';
+import mochaReporter from '@espekkaya/wdio-mocha-reporter';
 
 exports.config = {
     // ...
     reporters: [
-        JasmineReporter
+        mochaReporter
     ],
     // ...
 };
@@ -31,12 +31,12 @@ exports.config = {
 if you want to get aggregate result and save result into a json file;
 
 ```js
-import JasmineReporter from '@espekkaya/wdio-jasmine-reporter';
+import mochaReporter from '@espekkaya/wdio-mocha-reporter';
 
 exports.config = {
     // ...
     reporters: [
-        [JasmineReporter, {
+        [mochaReporter, {
             aggregateResultPah: './', // save json file path
             isResetResult: false | true, // reset values from json file (default: true)
         }],

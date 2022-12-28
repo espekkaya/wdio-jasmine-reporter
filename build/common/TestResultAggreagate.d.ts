@@ -12,8 +12,8 @@ declare class TestResultAggregate {
     set resultFilePath(path: string);
     get result(): TestAggregate;
     set result(value: TestAggregate);
-    getResultFromFile(): Promise<any>;
-    setResult2File(result: TestAggregate): Promise<void>;
+    getResultFromFile(): unknown;
+    setResult2File(result: TestAggregate): any;
 }
 declare const _default: TestResultAggregate;
 export default _default;
